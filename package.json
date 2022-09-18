@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "serve": "node server.js",
+    "heroku-postbuild" : "npx webpack & npm run serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
