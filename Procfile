@@ -1,2 +1,2 @@
-web:npx-webpack
-web:npm run serve
+web::npx-webpack
+web::npm run serve
