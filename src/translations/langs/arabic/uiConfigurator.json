@@ -1,0 +1,12 @@
+{
+  "uiConfigurator": "إعدادات الواجهة",
+  "seeOurDashboardOptions": "شاهد إعددادت واجهتنا",
+  "sidenavColors": "ألوان اللوحة الجانبية",
+  "sidenavType": "نوع اللوحة الجانبية",
+  "ChooseBetweenDifferentSidenav": "إختر نوع اللوحة الجانبية",
+  "dark": "ليلي",
+  "transparent": "شفاف",
+  "white": "أبيض",
+  "fixed": "ثابت",
+  "light_dark": "ليلي / نهاري"
+}

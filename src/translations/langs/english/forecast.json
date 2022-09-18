@@ -1,0 +1,13 @@
+{
+  "temp": "Tempreture",
+  "wind": "Wind",
+  "today": "today's tempreture",
+  "todaysTempForecast": "today's tempreture Forecast",
+  "todaysWindForecast": "today's wind Forecast in kmph",
+  "clouds": "Clouds",
+  "timezone": "timezone",
+  "updatedAt": "updated At",
+  "weather": "weather",
+  "pm": "pm",
+  "am": "am"
+}

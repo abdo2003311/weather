@@ -1,0 +1,14 @@
+{
+  "temp": "Tempreture",
+  "wind": "Wind",
+  "today": "today's tempreture",
+  "WeatherMinTempForecast": "Weather Min Temp Forecast",
+  "WeatherMaxTempForecast": "Weather Max Temp Forecast",
+  "sunrise": "sunrise",
+  "sunset": "sunset",
+  "timezone": "timezone",
+  "updatedAt": "updated At",
+  "weather": "weather",
+  "pm": "pm",
+  "am": "am"
+}

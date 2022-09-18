@@ -1,0 +1,12 @@
+{
+  "uiConfigurator": "UI Configurator",
+  "seeOurDashboardOptions": "See our UI options.",
+  "sidenavColors": "Sidenav Colors",
+  "sidenavType": "Sidenav Type",
+  "ChooseBetweenDifferentSidenav": "Choose between different sidenav types.",
+  "dark": "dark",
+  "transparent": "transparent",
+  "white": "white",
+  "fixed": "fixed",
+  "light_dark": "Light / Dark"
+}
