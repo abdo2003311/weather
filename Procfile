@@ -1,1 +1,2 @@
-web:npm start
+web:npx-webpack
+web:npm run serve
