@@ -21,8 +21,8 @@ export default function useDailyForecast({ city, country, lang, lat, lon }) {
       setData(res);
       setLoading(false);
     } else if (
-      Number(data.lat).toFixed(1) !== lat.toFixed(1) &&
-      Number(data.lon).toFixed(1) !== lon.toFixed(1)
+      Number(data.lat).toFixed(0) !== lat.toFixed(0) &&
+      Number(data.lon).toFixed(0) !== lon.toFixed(0)
     ) {
       setLoading(true);
       if (loading) {
