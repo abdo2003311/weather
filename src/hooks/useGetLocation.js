@@ -8,7 +8,13 @@ export default function useGetLocation(location) {
     if (loading) {
       if (!location) {
         let res = await getLocation();
-        setData(res);
+        console.log(res)
+        setData({
+          city: res.location.city,
+          country: res.country.name,
+          lat: res.location.latitude,
+          lon: res.location.longitude,
+        });
         setLoading(false);
       }
     }
@@ -22,7 +28,6 @@ export default function useGetLocation(location) {
           lon: res.data[0].lon,
         });
       }
-
     }
   };
   fetchData();

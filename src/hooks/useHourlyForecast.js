@@ -13,23 +13,18 @@ export default function useHourlyForecast({ city, country, lang, lat, lon }) {
   });
   let { i18n } = useTranslation();
   if (i18n.language !== localStorage.getItem("lang")) {
-    localStorage.setItem('lang', i18n.language)
+    localStorage.setItem("lang", i18n.language);
     setLoading(true);
   }
 
   let fetchData = async () => {
     if (loading) {
       let res = await getHourlyForecast(city, country, lang);
-      if (res.status === 200) {
-        setData(res.data);
-        setLoading(false);
-      } else {
-        setError(res.status);
-        setLoading(false);
-      }
+      setData(res.data);
+      setLoading(false);
     } else if (
-      Number(data.lat).toFixed(1) !== lat.toFixed(1) &&
-      Number(data.lon).toFixed(1) !== lon.toFixed(1)
+      Number(data.lat).toFixed(0) !== lat.toFixed(0) &&
+      Number(data.lon).toFixed(0) !== lon.toFixed(0)
     ) {
       setLoading(true);
       if (loading) {

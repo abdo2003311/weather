@@ -30,7 +30,7 @@ const getAlerts = async (lat, lon, lang) => {
 
 const getLocation = async () => {
   let data = await axios.get(
-    `http://ip-api.com/json`
+    `https://api.bigdatacloud.net/data/ip-geolocation?localityLanguage=en&key=${process.env.REACT_APP_API_IP_KEY}`
   );
   return data.data;
 };
