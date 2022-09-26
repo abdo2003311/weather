@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
 
-// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 
-// Material Dashboard 2 React example components
 // Data
 import useDailyForecast from "hooks/useDailyForecast";
 import Loading from "components/Loading";
@@ -14,7 +12,7 @@ import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 import { useTranslation } from "react-i18next";
-import { Pagination } from "swiper";
+import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 let SixteenDayForecast = ({ location }) => {
@@ -25,6 +23,20 @@ let SixteenDayForecast = ({ location }) => {
     lang: i18n.language,
     lat: location.lat,
     lon: location.lon,
+  });
+  let [slidesToShow, setSlidesToShow] = useState(
+    window.innerWidth <= 786 ? 1 : 4
+  );
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (slidesToShow === 4 && window.innerWidth <= 900) setSlidesToShow(1);
+      if (slidesToShow === 1 && window.innerWidth >= 900) setSlidesToShow(4);
+    });
+
+    return window.removeEventListener("resize", () => {
+      if (slidesToShow === 4 && window.innerWidth <= 900) setSlidesToShow(1);
+      if (slidesToShow === 1 && window.innerWidth >= 900) setSlidesToShow(4);
+    });
   });
   if (error) return <h2>error</h2>;
   if (loading) return <Loading width={100} height={100} />;
@@ -76,10 +88,11 @@ let SixteenDayForecast = ({ location }) => {
             ? ` ${t("sixteenDayForecast.pm")}`
             : ` ${t("sixteenDayForecast.am")}`
         }`;
+
   return (
     <>
       <MDBox py={3}>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} width="100vw">
           <Grid item xs={12} md={6}>
             <MDBox>
               <ComplexStatisticsCard
@@ -175,9 +188,9 @@ let SixteenDayForecast = ({ location }) => {
       <Swiper
         spaceBetween={1}
         pagination={{ clickable: true }}
-        slidesPerView={4}
-        modules={[Pagination]}
-        style={{ paddingBottom : "3vw"}}
+        slidesPerView={slidesToShow}
+        modules={[Navigation]}
+        navigation={{ clickable: true }}
       >
         {data.data.map((data, i) => (
           <SwiperSlide>

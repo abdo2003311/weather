@@ -46,6 +46,7 @@ import Layout from "examples/LayoutContainers/Layout";
 import Footer from "examples/Footer";
 import { useTranslation } from "react-i18next";
 import { setDirection } from "context";
+import { Box } from "@mui/material";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -120,27 +121,29 @@ export default function App() {
 
   const configsButton = useMemo(
     () => (
-      <MDBox
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        width="3.25rem"
-        height="3.25rem"
-        bgColor="white"
-        shadow="sm"
-        borderRadius="50%"
-        position="fixed"
-        right="2rem"
-        bottom="2rem"
-        zIndex={99}
-        color="dark"
-        sx={{ cursor: "pointer" }}
-        onClick={handleConfiguratorOpen}
-      >
-        <Icon fontSize="small" color="inherit">
-          settings
-        </Icon>
-      </MDBox>
+      <Box display={{ xs: "none", md: "flex" }}>
+        <MDBox
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          width="3.25rem"
+          height="3.25rem"
+          bgColor="white"
+          shadow="sm"
+          borderRadius="50%"
+          position="fixed"
+          right="2rem"
+          bottom="2rem"
+          zIndex={99}
+          color="dark"
+          sx={{ cursor: "pointer" }}
+          onClick={handleConfiguratorOpen}
+        >
+          <Icon fontSize="small" color="inherit">
+            settings
+          </Icon>
+        </MDBox>
+      </Box>
     ),
     [handleConfiguratorOpen]
   );

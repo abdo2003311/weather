@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -16,7 +16,7 @@ import Loading from "components/Loading";
 import useHourlyForecast from "hooks/useHourlyForecast";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 import { useTranslation } from "react-i18next";
-import { Pagination } from "swiper";
+import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 function Forecast({ location }) {
   let { t, i18n } = useTranslation();
@@ -26,6 +26,20 @@ function Forecast({ location }) {
     country: location.country,
     lat: location.lat,
     lon: location.lon,
+  });
+  let [slidesToShow, setSlidesToShow] = useState(
+    window.innerWidth <= 786 ? 1 : 4
+  );
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (slidesToShow === 4 && window.innerWidth <= 900) setSlidesToShow(1);
+      if (slidesToShow === 1 && window.innerWidth >= 900) setSlidesToShow(4);
+    });
+
+    return window.removeEventListener("resize", () => {
+      if (slidesToShow === 4 && window.innerWidth <= 900) setSlidesToShow(1);
+      if (slidesToShow === 1 && window.innerWidth >= 900) setSlidesToShow(4);
+    });
   });
   if (loading) return <Loading width={100} height={100} />;
   if (error) return <h2>error</h2>;
@@ -173,10 +187,9 @@ function Forecast({ location }) {
           <Grid item xs={12}>
             <Swiper
               spaceBetween={1}
-              slidesPerView={4}
-              modules={[Pagination]}
-              pagination={{ clickable: true }}
-              style={{ paddingBottom: "3vw" }}
+              slidesPerView={slidesToShow}
+              modules={[Navigation]}
+              navigation={{ clickable: true }}
             >
               {data.data.map((data, i) => (
                 <SwiperSlide>
