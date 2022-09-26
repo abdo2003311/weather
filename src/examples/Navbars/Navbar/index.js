@@ -126,7 +126,7 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
       anchorReference={null}
       anchorOrigin={{
         vertical: "top",
-        horizontal: "right",
+        horizontal: i18n.language == "ar" ? "left" : "right",
       }}
       open={Boolean(openMobileMenu)}
       onClose={handleCloseMobileMenu}
