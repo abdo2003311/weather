@@ -119,7 +119,7 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
       ))}
     </Menu>
   );
-
+  console.log(i18n.language);
   const MobileMenu = () => (
     <Menu
       anchorEl={openMobileMenu}
@@ -206,7 +206,7 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
     >
       <Toolbar>
         <Grid container justifyContent="space-between">
-          <Grid item xs={10}>
+          <Grid item xs={10} md={2}>
             <MDBox color="inherit" mb={{ xs: 1 }}>
               <Breadcrumbs
                 icon="home"
@@ -216,7 +216,7 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
               />
             </MDBox>
           </Grid>
-          <Grid item xs={2} container justifyContent="flex-end">
+          <Grid item xs={2} md={8} container justifyContent="flex-end">
             {isMini ? null : (
               <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
                 <Box display={{ xs: "none", md: "flex" }}>
