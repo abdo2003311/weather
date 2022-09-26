@@ -285,6 +285,7 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
                   </MDBox>
                 </Box>
                 <IconButton
+                  display={{ xs: "flex", md: "none" }}
                   size="small"
                   disableRipple
                   color="inherit"
