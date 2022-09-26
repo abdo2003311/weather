@@ -135,7 +135,7 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
       <MenuItem>
         <MDBox color={light ? "white" : "inherit"} onClick={handleMiniSidenav}>
           {" "}
-          {miniSidenav ? "Open Sidenav" : "Close Sidenav"}
+          {miniSidenav ? t("navbar.openSideNav") : t("navbar.closeSideNav")}
         </MDBox>
       </MenuItem>
       {Object.keys(lngs).map((lng) => (
@@ -206,7 +206,7 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
     >
       <Toolbar>
         <Grid container justifyContent="space-between">
-          <Grid item xs={10} md={2}>
+          <Grid item xs={10} md={4}>
             <MDBox color="inherit" mb={{ xs: 1 }}>
               <Breadcrumbs
                 icon="home"
@@ -284,20 +284,22 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
                     {renderMenu()}
                   </MDBox>
                 </Box>
-                <IconButton
-                  display={{ xs: "flex", md: "none" }}
-                  size="small"
-                  disableRipple
-                  color="inherit"
-                  sx={navbarIconButton}
-                  aria-controls="notification-menu"
-                  aria-haspopup="true"
-                  variant="contained"
-                  onClick={handleOpenMobileMenu}
-                >
-                  <Icon sx={iconsStyle}>menu</Icon>
-                </IconButton>
-                {MobileMenu()}
+                <Box display={{ xs: "flex", md: "none" }}>
+                  {" "}
+                  <IconButton
+                    size="small"
+                    disableRipple
+                    color="inherit"
+                    sx={navbarIconButton}
+                    aria-controls="notification-menu"
+                    aria-haspopup="true"
+                    variant="contained"
+                    onClick={handleOpenMobileMenu}
+                  >
+                    <Icon sx={iconsStyle}>menu</Icon>
+                  </IconButton>
+                  {MobileMenu()}
+                </Box>
               </MDBox>
             )}
           </Grid>

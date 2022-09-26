@@ -1,5 +1,8 @@
 {
   "search": "إبحث",
   "searchHere" : "إبحث هنا",
-  "placeholder" : "aleppo/syria : مثال "
+  "placeholder" : "aleppo/syria : مثال ",
+  "openSideNav" : "افتح اللوحة الجانبية",
+  "closeSideNav" : "أغلق اللوحة الجانبية"
+
 }

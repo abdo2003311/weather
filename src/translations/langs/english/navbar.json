@@ -1,5 +1,7 @@
 {
   "search": "search",
   "searchHere": "Search here",
-  "placeholder": "@ex: aleppo/syria"
+  "placeholder": "@ex: aleppo/syria",
+  "openSideNav" : "Open Sidenav",
+  "closeSideNav" : "Close Sidenav"
 }
