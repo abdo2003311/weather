@@ -1,15 +1,10 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { getAlerts } from "../api/api";
 
 export default function useAlerts({ lat, lon, lang }) {
   let [loading, setLoading] = useState(true);
   let [data, setData] = useState(null);
-  let { i18n } = useTranslation();
-  if (i18n.language !== localStorage.getItem("lang")) {
-    localStorage.setItem("lang", i18n.language);
-    setLoading(true);
-  }
+
   let fetchData = async () => {
     if (loading) {
       let res = await getAlerts(lat, lon, lang);

@@ -12,9 +12,10 @@ import useDailyForecast from "hooks/useDailyForecast";
 import Loading from "components/Loading";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
-import Carousel from "nuka-carousel";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 import { useTranslation } from "react-i18next";
+import { Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 let SixteenDayForecast = ({ location }) => {
   let { t, i18n } = useTranslation();
@@ -66,7 +67,9 @@ let SixteenDayForecast = ({ location }) => {
   };
   let updatedAt =
     new Date().getHours() > 12
-      ? new Date().getHours() - 12 + `:${new Date().getMinutes()} ${t("sixteenDayForecast.pm")}`
+      ? new Date().getHours() -
+        12 +
+        `:${new Date().getMinutes()} ${t("sixteenDayForecast.pm")}`
       : new Date().getHours() +
         `:${new Date().getMinutes()}${
           new Date().getHours() === 12
@@ -121,7 +124,9 @@ let SixteenDayForecast = ({ location }) => {
             <ReportsLineChart
               color="primary"
               title={t("sixteenDayForecast.WeatherMaxTempForecast")}
-              description={`${t("sixteenDayForecast.timezone")} ${data.timezone}`}
+              description={`${t("sixteenDayForecast.timezone")} ${
+                data.timezone
+              }`}
               date={`${t("sixteenDayForecast.updatedAt")} ${updatedAt}`}
               chart={maxTempDailyChart}
             />
@@ -132,7 +137,9 @@ let SixteenDayForecast = ({ location }) => {
             <ReportsLineChart
               color="success"
               title={t("sixteenDayForecast.WeatherMinTempForecast")}
-              description={`${t("sixteenDayForecast.timezone")} ${data.timezone}`}
+              description={`${t("sixteenDayForecast.timezone")} ${
+                data.timezone
+              }`}
               date={`${t("sixteenDayForecast.updatedAt")} ${updatedAt}`}
               chart={minTempDailyChart}
             />
@@ -143,7 +150,9 @@ let SixteenDayForecast = ({ location }) => {
             <ReportsLineChart
               color="warning"
               title={t("sixteenDayForecast.sunrise")}
-              description={`${t("sixteenDayForecast.timezone")} ${data.timezone}`}
+              description={`${t("sixteenDayForecast.timezone")} ${
+                data.timezone
+              }`}
               date={`${t("sixteenDayForecast.updatedAt")} ${updatedAt}`}
               chart={sunrise}
             />
@@ -154,49 +163,60 @@ let SixteenDayForecast = ({ location }) => {
             <ReportsLineChart
               color="dark"
               title={t("sixteenDayForecast.sunset")}
-              description={`${t("sixteenDayForecast.timezone")} ${data.timezone}`}
+              description={`${t("sixteenDayForecast.timezone")} ${
+                data.timezone
+              }`}
               date={`${t("sixteenDayForecast.updatedAt")} ${updatedAt}`}
               chart={sunset}
             />
           </MDBox>
         </Grid>
       </Grid>
-      <Carousel slidesToShow={4} withoutControls="true">
+      <Swiper
+        spaceBetween={1}
+        pagination={{ clickable: true }}
+        slidesPerView={4}
+        modules={[Pagination]}
+        style={{ paddingBottom : "3vw"}}
+      >
         {data.data.map((data, i) => (
-          <Grid item xs={12} pr={2} key={i}>
-            <MDBox mb={1.5}>
-              <DefaultInfoCard
-                // eslint-disable-next-line jsx-a11y/alt-text
-                icon={
+          <SwiperSlide>
+            {" "}
+            <Grid item xs={12} pr={2} key={i}>
+              <MDBox mb={1.5}>
+                <DefaultInfoCard
                   // eslint-disable-next-line jsx-a11y/alt-text
-                  <img
-                    style={{
-                      position: "absolute",
-                      display: "block",
-                      width: 50,
-                      height: 50,
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                    }}
-                    src={`https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`}
-                  />
-                }
-                title={t("sixteenDayForecast.weather")}
-                value={data.weather.description}
-                color="info"
-                description={data.datetime}
-                action={{
-                  type: "",
-                  route: "/",
-                  label: "navigate",
-                  color: "dark",
-                }}
-              />
-            </MDBox>
-          </Grid>
+                  icon={
+                    // eslint-disable-next-line jsx-a11y/alt-text
+                    <img
+                      style={{
+                        position: "absolute",
+                        display: "block",
+                        width: 50,
+                        height: 50,
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                      src={`https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`}
+                    />
+                  }
+                  title={t("sixteenDayForecast.weather")}
+                  value={data.weather.description}
+                  color="info"
+                  description={data.datetime}
+                  action={{
+                    type: "",
+                    route: "/",
+                    label: "navigate",
+                    color: "dark",
+                  }}
+                />
+              </MDBox>
+            </Grid>
+          </SwiperSlide>
         ))}
-      </Carousel>
+      </Swiper>
     </>
   );
 };

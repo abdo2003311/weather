@@ -29,7 +29,11 @@ import {
   navbarMobileMenu,
 } from "examples/Navbars/Navbar/styles";
 // Material Dashboard 2 React context
-import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
+import {
+  useMaterialUIController,
+  setMiniSidenav,
+  setOpenConfigurator,
+} from "context";
 import MDButton from "components/MDButton";
 import { Grid, MenuItem } from "@mui/material";
 import { useTranslation } from "react-i18next";
@@ -56,7 +60,9 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
 
     // A function that sets the transparent state of the navbar.
     function handleTransparentNavbar() {
-      setTransparentNavbar((fixedNavbar && window.scrollY === 0) || !fixedNavbar);
+      setTransparentNavbar(
+        (fixedNavbar && window.scrollY === 0) || !fixedNavbar
+      );
     }
 
     /** 
@@ -73,7 +79,8 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
   }, [dispatch, fixedNavbar]);
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
-  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
+  const handleConfiguratorOpen = () =>
+    setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
 
@@ -99,6 +106,7 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
           type="submit"
           onClick={() => {
             i18n.changeLanguage(lng);
+            location.reload();
           }}
         >
           {lngs[lng].nativeName}
@@ -108,7 +116,10 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
   );
 
   // Styles for the navbar icons
-  const iconsStyle = ({ palette: { dark, white, text }, functions: { rgba } }) => ({
+  const iconsStyle = ({
+    palette: { dark, white, text },
+    functions: { rgba },
+  }) => ({
     color: () => {
       let colorValue = light || darkMode ? white.main : dark.main;
 
@@ -124,7 +135,9 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
     <AppBar
       position={absolute ? "absolute" : navbarType}
       color="inherit"
-      sx={(theme) => navbar(theme, { transparentNavbar, absolute, light, darkMode })}
+      sx={(theme) =>
+        navbar(theme, { transparentNavbar, absolute, light, darkMode })
+      }
     >
       <Toolbar>
         <Grid container justifyContent="space-between">
@@ -143,11 +156,14 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
               <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
                 <MDBox pr={1}>
                   <MDInput
-                    label={t('navbar.searchHere')}
-                    placeholder={t('navbar.placeholder')}
+                    label={t("navbar.searchHere")}
+                    placeholder={t("navbar.placeholder")}
                     onChange={(e) => {
                       setL({
-                        city: e.target.value.substr(0, e.target.value.indexOf("/")),
+                        city: e.target.value.substr(
+                          0,
+                          e.target.value.indexOf("/")
+                        ),
                         country: e.target.value.substr(
                           e.target.value.indexOf("/") + 1,
                           e.target.value.length
@@ -162,7 +178,7 @@ function Navbar({ absolute, light, isMini, setLocation, routeName }) {
                       setLocation(l);
                     }}
                   >
-                    {t('navbar.search')}
+                    {t("navbar.search")}
                   </MDButton>
                 </MDBox>
                 <MDBox color={light ? "white" : "inherit"}>

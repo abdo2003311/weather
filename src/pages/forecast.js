@@ -9,7 +9,6 @@ import MDBox from "components/MDBox";
 // Material Dashboard 2 React example components
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
-import Carousel from "nuka-carousel";
 // Data
 
 // Dashboard components
@@ -17,12 +16,13 @@ import Loading from "components/Loading";
 import useHourlyForecast from "hooks/useHourlyForecast";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 import { useTranslation } from "react-i18next";
-
+import { Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 function Forecast({ location }) {
   let { t, i18n } = useTranslation();
   let { data, loading, error } = useHourlyForecast({
     city: location.city,
-    lang : i18n.language,
+    lang: i18n.language,
     country: location.country,
     lat: location.lat,
     lon: location.lon,
@@ -71,10 +71,14 @@ function Forecast({ location }) {
   let { description } = weather;
   let updatedAt =
     new Date().getHours() > 12
-      ? new Date().getHours() - 12 + `:${new Date().getMinutes()} ${t("forecast.pm")}`
+      ? new Date().getHours() -
+        12 +
+        `:${new Date().getMinutes()} ${t("forecast.pm")}`
       : new Date().getHours() +
         `:${new Date().getMinutes()}${
-          new Date().getHours() === 12 ? ` ${t("forecast.pm")}` : ` ${t("forecast.am")}`
+          new Date().getHours() === 12
+            ? ` ${t("forecast.pm")}`
+            : ` ${t("forecast.am")}`
         }`;
 
   return (
@@ -167,47 +171,59 @@ function Forecast({ location }) {
             </MDBox>
           </Grid>
           <Grid item xs={12}>
-            <Carousel slidesToShow={4} withoutControls="true">
+            <Swiper
+              spaceBetween={1}
+              slidesPerView={4}
+              modules={[Pagination]}
+              pagination={{ clickable: true }}
+              style={{ paddingBottom: "3vw" }}
+            >
               {data.data.map((data, i) => (
-                <Grid item xs={12} pr={2} key={i}>
-                  <MDBox mb={1.5}>
-                    <DefaultInfoCard
-                      icon={
-                        // eslint-disable-next-line jsx-a11y/alt-text
-                        <img
-                          style={{
-                            position: "absolute",
-                            display: "block",
-                            width: 50,
-                            height: 50,
-                            top: "50%",
-                            left: "50%",
-                            transform: "translate(-50%, -50%)",
-                          }}
-                          src={`https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`}
-                        />
-                      }
-                      title={t("forecast.weather")}
-                      value={data.weather.description}
-                      color="info"
-                      description={
-                        Number(data.datetime.substr(11, 2)) > 12
-                          ? Number(data.datetime.substr(11, 2)) - 12 + `:00 ${t("forecast.pm")}`
-                          : Number(data.datetime.substr(11, 2)) === 12
-                          ? "12:00 pm"
-                          : Number(data.datetime.substr(11, 2)) + `:00 ${t("forecast.am")}`
-                      }
-                      action={{
-                        type: "",
-                        route: "/",
-                        label: "navigate",
-                        color: "dark",
-                      }}
-                    />
-                  </MDBox>
-                </Grid>
+                <SwiperSlide>
+                  {" "}
+                  <Grid item xs={12} pr={2} key={i}>
+                    <MDBox mb={1.5}>
+                      <DefaultInfoCard
+                        icon={
+                          // eslint-disable-next-line jsx-a11y/alt-text
+                          <img
+                            style={{
+                              position: "absolute",
+                              display: "block",
+                              width: 50,
+                              height: 50,
+                              top: "50%",
+                              left: "50%",
+                              transform: "translate(-50%, -50%)",
+                            }}
+                            src={`https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`}
+                          />
+                        }
+                        title={t("forecast.weather")}
+                        value={data.weather.description}
+                        color="info"
+                        description={
+                          Number(data.datetime.substr(11, 2)) > 12
+                            ? Number(data.datetime.substr(11, 2)) -
+                              12 +
+                              `:00 ${t("forecast.pm")}`
+                            : Number(data.datetime.substr(11, 2)) === 12
+                            ? "12:00 pm"
+                            : Number(data.datetime.substr(11, 2)) +
+                              `:00 ${t("forecast.am")}`
+                        }
+                        action={{
+                          type: "",
+                          route: "/",
+                          label: "navigate",
+                          color: "dark",
+                        }}
+                      />
+                    </MDBox>
+                  </Grid>
+                </SwiperSlide>
               ))}
-            </Carousel>
+            </Swiper>
           </Grid>
         </Grid>
       </MDBox>
