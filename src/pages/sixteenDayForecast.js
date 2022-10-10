@@ -92,7 +92,7 @@ let SixteenDayForecast = ({ location }) => {
   return (
     <>
       <MDBox py={3}>
-        <Grid container spacing={3} width="100vw">
+        <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <MDBox>
               <ComplexStatisticsCard

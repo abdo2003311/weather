@@ -195,13 +195,6 @@ export default function App() {
           routes={[
             {
               type: "collapse",
-              name: t("sideNav.forecast"),
-              key: "forecast",
-              icon: <Icon fontSize="small">wb_sunny</Icon>,
-              route: "/forecast",
-            },
-            {
-              type: "collapse",
               name: t("sideNav.sixteenDayForecast"),
               key: "sixteenDayForecast",
               icon: <Icon fontSize="small">cloud</Icon>,
@@ -219,7 +212,6 @@ export default function App() {
         <Layout>
           {navbar}
           <Routes>
-            <Route exact path="/forecast" element={forecast} />
             <Route
               exact
               path="/sixteenDayForecast"
